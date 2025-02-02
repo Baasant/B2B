@@ -4,6 +4,6 @@ project.rar
 Archive/
 __pycache__/
 app/__pycache__/
-llm4allV1.1.ipynb
-Job Description1.txt
-cv.txt
+app/llm4allV1.1.ipynb
+app/Job Description1.txt
+app/cv.txt
