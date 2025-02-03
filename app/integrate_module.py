@@ -18,7 +18,7 @@ def feedback_loop(cv_text, job_description, max_iterations=2):
             return current_letter
     
         else:
-            print("Refining the cover letter based on feedback...\n") 
+            print("Refining the cover letter based on evaluator...\n") 
             print("****************************************************************")
             refined_letter=refined_cover_letter(feedback,cv_data,job_description,current_letter)
 

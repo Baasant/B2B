@@ -31,6 +31,6 @@ def user_feedback_fun(user_feedback,cv_data,job_description,current_letter):
         # Generate the refined cover letter
         refined_COV = llm4generator_extractor(refinement_prompt)
         print("refined_COV")
-        print(refined_COV)
+        # print(refined_COV)
         print("*****************************************************")
         return refined_COV
