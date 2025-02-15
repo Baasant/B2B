@@ -1,0 +1,14 @@
+Dear Hiring Manager,
+
+I am writing to express my strong interest in the Machine Learning Engineer position at Cisco ThousandEyes. As a highly skilled and experienced machine learning professional, I am confident that I can make significant contributions to your team.
+
+My background in electronics and electrical communication engineering, combined with my experience in developing and deploying AI-driven solutions, has provided me with a unique combination of technical skills and expertise. My experience at Omega Wireless and Valeo-Egypt has allowed me to hone my skills in creating AI-powered expert systems, monitoring telecom operations, and developing intelligent systems for RF planning and optimization. Additionally, my research work at the University of Nile and University of Manipal has given me a deep understanding of tumor research using CNNs, as well as text classification and sentiment analysis.
+
+I am particularly drawn to this position at Cisco ThousandEyes due to its innovative approach to optimizing networks for better serving applications. I am excited about the opportunity to design and implement large-scale machine learning pipelines using Python and other Big Data technologies, as well as my experience in crafting machine learning models and transforming abstract concepts into robust, efficient, and scalable solutions.
+
+I believe that my skills and experience make me an ideal candidate for this role. I possess a deep understanding of the intricacies inherent in machine learning systems and am confident in my ability to translate complex ideas into practical, effective solutions. My passion for AI research and my dedication to continually refine and improve my skills make me a valuable asset to any team.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how my skills and experience align with your team's needs.
+
+Sincerely,
+Bassant Elsayed

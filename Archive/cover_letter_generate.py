@@ -1,5 +1,6 @@
 from langchain_community.llms import Ollama
 llm4generator_extractor= Ollama(model="llama2", temperature=0.7)
+ 
 
  # Prepare the prompt
 phase1_prompt4genrator = f"""
@@ -22,7 +23,7 @@ def generate_cover_letter(cv_data, job_description):
 
 
     """
-    # Generate using  llama 2
+    # Generate the cover letter using LLaMA 2
     cover_letter = llm4generator_extractor(prompt)
     return cover_letter
 
@@ -32,7 +33,6 @@ def generate_cover_letter(cv_data, job_description):
 # print("Generated cover Letter:\n", cover_letter)
 
 # regenerate a cover letter based on feedback from evaluator
-
 def refined_cover_letter(feedback,cv_data,job_description,current_letter):
         refinement_prompt = f"""
         The evaluator provided the following feedback on your previous cover letter:
@@ -55,7 +55,6 @@ def refined_cover_letter(feedback,cv_data,job_description,current_letter):
         Generate a new and improved version of the cover letter.
         
         you must only add the new cover letter dont add the feedback or job Description
-        you must ensure that it concludes with the CV owner's name as extracted from the CV. The name should appear at the very end of the letter.
 
 
         """
