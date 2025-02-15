@@ -1,12 +1,13 @@
-# myenv/
-# cv.txt
-# project.rar
-# Archive/
-# __pycache__/
-# # app/__pycache__/
-# # app/llm4allV1.1.ipynb
-# # app/Job Description1.txt
-# # app/cv.txt
+myenv/
+cv.txt
+project.rar
+Archive/
+__pycache__/
+llm4allV1.1.ipynb
+Job Description1.txt
+cv.txt
+cover_letter.txt
+
 # app/__pycache__/
 # app/llm4allV1.1.ipynb
 # app/Job Description1.txt
@@ -14,9 +15,9 @@
 # app/cover_letter.txt
 
 
-myenv/
-*.rar
-__pycache__/
-app/__pycache__/
-app/*.ipynb
-app/*.txt
+# myenv/
+# *.rar
+# __pycache__/
+# app/__pycache__/
+# app/*.ipynb
+# app/*.txt
