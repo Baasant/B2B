@@ -1,48 +1,4 @@
-# import streamlit as st
-# from integrate_module import *
-# from user_feedback import *
-
-# def main():
-#     # Set up the Streamlit page layout
-#     st.set_page_config(page_title="cover Letter Generator", layout="wide")
-
-#     st.title("cover Letter Generator")
-#     st.write("Upload your CV and the Job Description to get a customized cover letter.")
-
-#     # Upload CV and Job Description as txt files
-#     cv_file = st.file_uploader("Upload your CV (Text format)", type=["txt"])
-#     job_file = st.file_uploader("Upload the Job Description (Text format)", type=["txt"])
-
-#     if cv_file and job_file:
-#         # Read the content of the uploaded files
-#         cv_text = cv_file.getvalue().decode("utf-8")
-#         job_description = job_file.getvalue().decode("utf-8")
-
-#         # Display the CV and Job Description content (optional)
-#         st.subheader("Candidate's CV")
-#         st.text(cv_text)
-
-#         st.subheader("Job Description")
-#         st.text(job_description)
-
-#         # Generate the cover letter and give the option to refine it
-#         if st.button("Generate cover Letter"):
-#             refined_letter = feedback_loop(cv_text, job_description, max_iterations=1)
-
-#             # Display the generated cover letter
-#             st.subheader("Generated cover Letter")
-#             st.text(refined_letter)
-
-#             # Allow users to download the generated cover letter as a .txt file
-#             st.download_button(
-#                 label="Download cover Letter",
-#                 data=refined_letter,
-#                 file_name="cover_letter.txt",
-#                 mime="text/plain"
-#             )
-
-# if __name__ == "__main__":
-#     main()
+from confidence_score import compute_bert_recall_confidence_score
 import streamlit as st
 from integrate_module import *
 from user_feedback import *
@@ -76,12 +32,17 @@ def main():
 
         # Generate cover letter
         if st.button("Generate Cover Letter"):
-            st.session_state.cover_letter = feedback_loop(cv_text, job_description, max_iterations=1)
+            st.session_state.cover_letter = feedback_loop(cv_text, job_description, max_iterations=5)
+            st.session_state.confidence_score = compute_bert_recall_confidence_score(cv_text, job_description, st.session_state.cover_letter)
+
 
         # Display cover letter if available
         if st.session_state.cover_letter:
             st.subheader("Generated Cover Letter")
             st.text(st.session_state.cover_letter)
+            with st.container():
+                st.markdown("### :chart_with_upwards_trend: The Confidence Level of the Generated Output")
+                st.metric(label="Confidence Score", value=f"{st.session_state.confidence_score:.2f}")
 
             # Allow users to download the cover letter
             st.download_button(
@@ -90,11 +51,12 @@ def main():
                 file_name="cover_letter.txt",
                 mime="text/plain"
             )
+            
 
             # Feedback input section
             st.subheader("Provide Feedback")
             user_feedback = st.text_area("Enter your feedback to refine the cover letter:")
-
+ 
             # Submit feedback and regenerate cover letter
             if st.button("Submit Feedback"):
                 if user_feedback.strip():
@@ -104,6 +66,12 @@ def main():
                     # Display the refined cover letter
                     st.subheader("Refined Cover Letter")
                     st.text(refined_letter)
+                    st.session_state.confidence_score = compute_bert_recall_confidence_score(cv_text, job_description, refined_letter)
+
+                    with st.container():
+                        st.markdown("### :chart_with_upwards_trend: The Confidence Level of the Generated Output")
+                        st.metric(label="Confidence Score", value=f"{st.session_state.confidence_score:.2f}")
+
 
                     # Allow users to download the refined cover letter
                     st.download_button(

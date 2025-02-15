@@ -55,6 +55,7 @@ def refined_cover_letter(feedback,cv_data,job_description,current_letter):
         Generate a new and improved version of the cover letter.
         
         you must only add the new cover letter dont add the feedback or job Description
+        you must ensure that it concludes with the CV owner's name as extracted from the CV. The name should appear at the very end of the letter.
 
 
         """
