@@ -46,3 +46,15 @@ pip install -r requirements.txt
 python -m streamlit run app_main.py
 ```
 
+# Run using Docker container
+1. Build the Docker Image
+```
+docker build -t streamlit-app .
+```
+2. Run the Docker Container
+```
+docker run -p 8501:8501 streamlit-app
+```
+This maps port 8501 inside the container to port 8501 on your local machine, allowing you to access your Streamlit app at:
+
+🔗 http://localhost:8501

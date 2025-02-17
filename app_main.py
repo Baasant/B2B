@@ -5,7 +5,7 @@ from user_feedback import *
 from langchain_community.llms import Ollama
 
 # Initialize LLM
-llm4generator_extractor = Ollama(model="llama2", temperature=0.7)
+llm4generator_extractor = Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
 
 def main():
     st.set_page_config(page_title="Cover Letter Generator", layout="wide")

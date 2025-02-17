@@ -1,5 +1,5 @@
 from langchain_community.llms import Ollama
-llm4eval= Ollama(model="deepseek-r1", temperature=0.7)
+llm4eval= Ollama(model="deepseek-r1", temperature=0.7,base_url="http://host.docker.internal:11434")
 
 # Function to evaluate the cover letter
 def evaluate_cover_letter(cv_data, job_description, cover_letter):

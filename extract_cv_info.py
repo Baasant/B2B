@@ -1,5 +1,5 @@
 from langchain_community.llms import Ollama
-llm4generator_extractor= Ollama(model="llama2", temperature=0.7)
+llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
 
 
 prompt4extract_data = f"""
