@@ -1,7 +1,9 @@
-from confidence_score import compute_bert_recall_confidence_score
+from src.confidence_score import compute_bert_recall_confidence_score
 import streamlit as st
-from integrate_module import *
-from user_feedback import *
+from src.integrate_module import feedback_loop
+from src.user_feedback import user_feedback_fun
+# from integrate_module import *
+# from user_feedback import *
 from langchain_community.llms import Ollama
 
 # Initialize LLM

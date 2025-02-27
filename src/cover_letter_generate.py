@@ -1,6 +1,6 @@
 from langchain_community.llms import Ollama
-llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
-
+# llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
+llm4generator_extractor= Ollama(model="llama2", temperature=0.7)
  # Prepare the prompt
 phase1_prompt4genrator = f"""
 I need a cover letter based on their CV and the job description provided. The letter should emphasize the candidate's relevant skills, 

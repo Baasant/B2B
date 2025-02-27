@@ -1,6 +1,6 @@
-from  evaluate_cover_letter import *
-from extract_cv_info import *
-from  cover_letter_generate import *
+from  src.evaluate_cover_letter import evaluate_cover_letter
+from src.extract_cv_info import extract_cv_info_with_llm ,prompt4extract_data
+from  src.cover_letter_generate import refined_cover_letter,generate_cover_letter
 
 def feedback_loop(cv_text, job_description, max_iterations=2):
     cv_data=extract_cv_info_with_llm(cv_text,prompt4extract_data)
