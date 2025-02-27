@@ -1,9 +1,9 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-
+model = SentenceTransformer('all-MiniLM-L6-v2')
 def compute_bert_recall_confidence_score(cv, job_desc, cover_letter):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    
     # get embeding of cv ,description and cover letter 
     cv_embedding = model.encode(cv)
     jd_embedding = model.encode(job_desc)
