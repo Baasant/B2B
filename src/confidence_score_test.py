@@ -48,6 +48,6 @@ def compute_bert_recall_confidence_score(cv_path, job_desc_path, cover_letter_pa
     similarity = cosine_similarity([combined_cv_jd], [cl_embedding])[0][0]
 
     # Return the similarity score as a percentage
-    return similarity * 100
+    return int(similarity * 100)
 
 
