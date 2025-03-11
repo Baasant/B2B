@@ -5,11 +5,26 @@ from src.user_feedback import user_feedback_fun
 # from integrate_module import *
 # from user_feedback import *
 from langchain_community.llms import Ollama
+import os
 
 # Initialize LLM
-llm4generator_extractor = Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
+# llm4generator_extractor = Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
 
 def main():
+#     #read the eva prompt
+#     main_directory = os.getcwd()  
+#     prompt_dir  = "prompts"  
+#     file_name = "evaluate_prompt.txt"  
+
+#     file_path = os.path.join(main_directory, prompt_dir, file_name)
+
+#     if os.path.exists(file_path):
+#         with open(file_path, "r", encoding="utf-8") as file:
+#             evaluation_prompt = file.read()
+#    #  print(content)
+#     else:
+#         print("File does not exist!")
+
     st.set_page_config(page_title="Cover Letter Generator", layout="wide")
     st.title("Cover Letter Generator")
     st.write("Upload your CV and the Job Description to get a customized cover letter.")

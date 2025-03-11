@@ -1,4 +1,4 @@
-Please evaluate the following cover letter based on the criteria listed below. For each point, provide a score from 1 (poor) to 5 (excellent), along with a brief explanation or examples supporting your score. Then, provide detailed feedback on the letter, including specific suggestions for improvement where necessary. Finally, include a summary stating whether the letter is **"Approved"** or **"Needs Improvement."**
+    Please evaluate the following cover letter based on the criteria listed below. For each point, provide a score from 1 (poor) to 5 (excellent), along with a brief explanation or examples supporting your score. Then, provide detailed feedback on the letter, including specific suggestions for improvement where necessary. Finally, include a summary stating whether the letter is **"Approved"** or **"Needs Improvement."**
 
 
     **Criteria for Evaluation:**  
@@ -49,3 +49,12 @@ Please evaluate the following cover letter based on the criteria listed below. F
    
     ---
 Here are the needed data
+
+        CV:
+        {cv_data}
+        
+        Job Description:
+        {job_description}
+        
+        cover Letter:
+        {cover_letter}
