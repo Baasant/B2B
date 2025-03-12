@@ -67,15 +67,15 @@ jobs:
         run: |
           output=$(cat output.txt | tr -d '[:space:]')  # Remove spaces and newlines
           echo "Test Output: $output"
-          echo "Output Type: $(echo "$output" | awk '{print typeof($0)}')"  # Print output type
-          if [[ "$output" =~ ^[0-9]+$ ]]; then  # Ensure output is an integer
-            if [ "$output" -gt 50 ]; then
-              echo "✅ Test passed: Output ($output) is greater than 50"
+          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number (integer or float)
+            output_float=$(python -c "print(float('$output'))" 2>/dev/null)  # Convert to float using Python
+            if (( $(echo "$output_float > 50" | bc -l) )); then
+              echo "✅ Test passed: Output ($output_float) is greater than 50"
             else
-              echo "❌ Test failed: Output ($output) is not greater than 50"
+              echo "❌ Test failed: Output ($output_float) is not greater than 50"
               exit 1
             fi
           else
-            echo "❌ Test failed: Output is not a valid integer ($output)"
+            echo "❌ Test failed: Output is not a valid number ($output)"
             exit 1
           fi
