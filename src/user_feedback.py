@@ -1,5 +1,7 @@
-from langchain_community.llms import Ollama
-llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
+# from langchain_community.llms import Ollama
+# llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
+
+from src.llm_instance import lama2_model
 
 def user_feedback_fun(user_feedback,cv_data,job_description,current_letter):
         
@@ -29,7 +31,7 @@ def user_feedback_fun(user_feedback,cv_data,job_description,current_letter):
         """
         
         # Generate the refined cover letter
-        refined_COV = llm4generator_extractor(refinement_prompt)
+        refined_COV = lama2_model(refinement_prompt)
         print("refined_COV")
         # print(refined_COV)
         print("*****************************************************")

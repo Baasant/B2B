@@ -1,7 +1,10 @@
-from langchain_community.llms import Ollama
+# from langchain_community.llms import Ollama
 # llm4generator_extractor= Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
-llm4generator_extractor= Ollama(model="llama2", temperature=0.7)
+# llm4generator_extractor= Ollama(model="llama2", temperature=0.7)
  # Prepare the prompt
+
+
+from src.llm_instance import lama2_model
 phase1_prompt4genrator = f"""
 I need a cover letter based on their CV and the job description provided. The letter should emphasize the candidate's relevant skills, 
 experience, and achievements while tailoring the content to the requirements of the job. Below are the details:
@@ -23,7 +26,7 @@ def generate_cover_letter(cv_data, job_description):
 
     """
     # Generate using  llama 2
-    cover_letter = llm4generator_extractor(prompt)
+    cover_letter = lama2_model(prompt)
     return cover_letter
 
 
@@ -61,5 +64,5 @@ def refined_cover_letter(feedback,cv_data,job_description,current_letter):
         """
         
         # Generate the refined cover letter
-        current_letter = llm4generator_extractor(refinement_prompt)
+        current_letter = lama2_model(refinement_prompt)
         return current_letter
