@@ -18,10 +18,10 @@
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-# from sentence_transformers import SentenceTransformer
-from src.llm_instance import SentenceTransformer_model
+from sentence_transformers import SentenceTransformer
+# from src.llm_instance import SentenceTransformer_model
 # Load BERT-based model
-# model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def read_text_file(file_path):
     """Reads a text file and returns its content as a string."""
@@ -37,9 +37,9 @@ def compute_bert_recall_confidence_score(cv_path, job_desc_path, cover_letter_pa
     cover_letter = read_text_file(cover_letter_path)
     
     # Get embeddings of CV, job description, and cover letter
-    cv_embedding = SentenceTransformer_model.encode(cv)
-    jd_embedding = SentenceTransformer_model.encode(job_desc)
-    cl_embedding = SentenceTransformer_model.encode(cover_letter)
+    cv_embedding = model.encode(cv)
+    jd_embedding = model.encode(job_desc)
+    cl_embedding = model.encode(cover_letter)
 
     # Compute combined embedding of CV and job description
     combined_cv_jd = np.mean([cv_embedding, jd_embedding], axis=0)
