@@ -65,11 +65,11 @@ jobs:
         run: |
           output=$(python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt)
           echo "Raw Output: $output"
-          echo "::set-output name=result::$output"
+          echo "TEST_OUTPUT=$output" >> $GITHUB_ENV  # Store output in environment variable
 
       - name: Check if output is greater than 50
         run: |
-          output="${{ steps.run_test.outputs.result }}"
+          output="$TEST_OUTPUT"  # Retrieve stored output
           echo "Processed Output: $output"
           if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number
             output_float=$(python -c "print(float('$output'))")  # Convert to float
