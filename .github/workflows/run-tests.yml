@@ -65,14 +65,14 @@ jobs:
         run: |
           output=$(python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt)
           echo "Raw Output: $output"
-          echo "output=$output" >> $GITHUB_ENV
+          echo "::set-output name=result::$output"
 
       - name: Check if output is greater than 50
         run: |
-          output="$output"
+          output="${{ steps.run_test.outputs.result }}"
           echo "Processed Output: $output"
-          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number (integer or float)
-            output_float=$(python -c "print(float('$output'))" 2>/dev/null)  # Convert to float using Python
+          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number
+            output_float=$(python -c "print(float('$output'))")  # Convert to float
             echo "Converted Output: $output_float"
             if (( $(echo "$output_float > 50" | bc -l) )); then
               echo "✅ Test passed: Output ($output_float) is greater than 50"
