@@ -58,21 +58,27 @@ jobs:
           python-version: "3.9"  # Change this based on your Python version
 
       - name: Install dependencies
-        run: pip install -r test/requirements.txt  # Add this if you have dependencies
+        run: pip install -r test/requirements.txt && pip list  # Add this if you have dependencies
+
+      - name: Debug Current Directory
+        run: pwd && ls -R
+
+      - name: Print Environment Variables
+        run: env
 
       - name: Run test and capture output
         id: run_test
         run: |
-          output=$(python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt)
+          output=$(python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt || echo "⚠️ Python script failed")
           echo "Raw Output: $output"
-          echo "TEST_OUTPUT=$output" >> $GITHUB_ENV  # Store output in environment variable
+          echo "output=$output" >> $GITHUB_ENV
 
       - name: Check if output is greater than 50
         run: |
-          output="$TEST_OUTPUT"  # Retrieve stored output
+          output="$output"
           echo "Processed Output: $output"
-          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number
-            output_float=$(python -c "print(float('$output'))")  # Convert to float
+          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number (integer or float)
+            output_float=$(python -c "print(float('$output'))" 2>/dev/null)  # Convert to float using Python
             echo "Converted Output: $output_float"
             if (( $(echo "$output_float > 50" | bc -l) )); then
               echo "✅ Test passed: Output ($output_float) is greater than 50"
