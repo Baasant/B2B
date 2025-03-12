@@ -1,3 +1,41 @@
+# name: Run Tests Before Push
+
+# on:
+#   push:
+#     branches:
+#       - main  # Change this to your branch if needed
+#   pull_request:
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: "3.9"  # Change this based on your Python version
+
+#       - name: Install dependencies
+#         run: pip install -r test/requirements.txt  # Add this if you have dependencies
+
+#       - name: Run test
+#         run: python src/confidence_score_test.py test/cv.txt test/Job Description1.txt test/cover_letter.txt > output.txt
+
+#       - name: Check if output is greater than 50
+#         run: |
+#           output=$(cat output.txt)
+#           echo $output
+#           if [ "$output" -gt 50 ]; then
+#             echo "✅ Test passed: Output ($output) is greater than 50"
+#           else
+#             echo "❌ Test failed: Output ($output) is not greater than 50"
+#             exit 1
+#           fi
+
 name: Run Tests Before Push
 
 on:
@@ -23,12 +61,12 @@ jobs:
         run: pip install -r test/requirements.txt  # Add this if you have dependencies
 
       - name: Run test
-        run: python src/confidence_score_test.py test/cv.txt test/Job Description1.txt test/cover_letter.txt > output.txt
+        run: python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt > output.txt
 
       - name: Check if output is greater than 50
         run: |
           output=$(cat output.txt)
-          echo $output
+          echo "Test Output: $output"
           if [ "$output" -gt 50 ]; then
             echo "✅ Test passed: Output ($output) is greater than 50"
           else
