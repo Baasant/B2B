@@ -65,11 +65,17 @@ jobs:
 
       - name: Check if output is greater than 50
         run: |
-          output=$(cat output.txt)
+          output=$(cat output.txt | tr -d '[:space:]')  # Remove spaces and newlines
           echo "Test Output: $output"
-          if [ "$output" -gt 50 ]; then
-            echo "✅ Test passed: Output ($output) is greater than 50"
+          echo "Output Type: $(echo "$output" | awk '{print typeof($0)}')"  # Print output type
+          if [[ "$output" =~ ^[0-9]+$ ]]; then  # Ensure output is an integer
+            if [ "$output" -gt 50 ]; then
+              echo "✅ Test passed: Output ($output) is greater than 50"
+            else
+              echo "❌ Test failed: Output ($output) is not greater than 50"
+              exit 1
+            fi
           else
-            echo "❌ Test failed: Output ($output) is not greater than 50"
+            echo "❌ Test failed: Output is not a valid integer ($output)"
             exit 1
           fi
