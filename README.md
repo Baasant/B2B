@@ -55,6 +55,6 @@ docker build -t streamlit-app .
 ```
 docker run -p 8501:8501 streamlit-app
 ```
-This maps port 8501 inside the container to port 8501 on your local machine, allowing you to access your Streamlit app at:
+This maps port 8501 inside the container to port 8501 on your local machine, allowing you to access your Streamlit app at
 
 🔗 http://localhost:8501

@@ -28,6 +28,7 @@ jobs:
       - name: Check if output is greater than 50
         run: |
           output=$(cat output.txt)
+          echo $output
           if [ "$output" -gt 50 ]; then
             echo "✅ Test passed: Output ($output) is greater than 50"
           else
