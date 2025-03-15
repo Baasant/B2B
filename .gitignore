@@ -2,12 +2,12 @@ benv/
 cv.txt
 project.rar
 __pycache__/
-llm4allV1.1.ipynb
-Job Description1.txt
-cv.txt
-cover_letter.txt
+# llm4allV1.1.ipynb
+# Job Description1.txt
+# cv.txt
+# cover_letter.txt
 Archive/
-
+requirements.txt
 
 # app/__pycache__/
 # app/llm4allV1.1.ipynb
