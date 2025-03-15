@@ -58,7 +58,8 @@ jobs:
           python-version: "3.9"  # Change this based on your Python version
 
       - name: Install dependencies
-        run: pip install -r test/requirements.txt && pip list  # Add this if you have dependencies
+        run: pip install -r requirements.txt && pip list  # Add this if you have dependencies
+        # run: pip install -r test/requirements.txt && pip list  # Add this if you have dependencies
 
       - name: Debug Current Directory
         run: pwd && ls -R
