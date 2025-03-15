@@ -40,12 +40,12 @@ jobs:
           output="$output"
           echo "Processed Output: $output"
           if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number (integer or float)
-            output_int=$(python -c "print(int('$output'))" 2>/dev/null)  # Convert to float using Python
+            output_int=$(python -c "print(int('$output'))" 2>/dev/null)
             echo "Converted Output: $output_int"
             if (( $(echo "$output_int > 50" | bc -l) )); then
-              echo "Test passed: Output ($output_float) is greater than 50"
+              echo "Test passed: Output ($output_int) is greater than 50"
             else
-              echo "Test failed: Output ($output_float) is not greater than 50"
+              echo "Test failed: Output ($output_int) is not greater than 50"
               exit 1
             fi
           else
