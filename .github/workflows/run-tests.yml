@@ -2,7 +2,7 @@ name: Run Tests Before Push
 on:
   push:
     branches:
-      - main  # Change this to your branch if needed
+      - main
   pull_request:
 
 jobs:
@@ -16,11 +16,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: " 3.12.6"  # Change this based on your Python version
+          python-version: "3.12.6"  # Fixed whitespace issue
 
       - name: Install dependencies
-        run: pip install -r requirements.txt && pip list  # Add this if you have dependencies
-        # run: pip install -r test/requirements.txt && pip list  # Add this if you have dependencies
+        run: pip install -r requirements.txt && pip list  # Ensure dependencies are installed
 
       - name: Debug Current Directory
         run: pwd && ls -R
@@ -31,18 +30,18 @@ jobs:
       - name: Run test and capture output
         id: run_test
         run: |
-          output=$(python src/confidence_score_test.py test/cv.txt "test/Job_Description1.txt" test/cover_letter.txt || echo "Python script failed")
+          output=$(python src/confidence_score_test.py test/cv.txt test/Job_Description1.txt test/cover_letter.txt)
           echo "Raw Output: $output"
-          echo "output=$output" >> $GITHUB_ENV
+          echo "OUTPUT=$output" >> $GITHUB_ENV  # Store the output in GitHub Actions env
 
       - name: Check if output is greater than 50
         run: |
-          output="$output"
+          output=${{ env.OUTPUT }}  # Retrieve stored output
           echo "Processed Output: $output"
-          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number (integer or float)
-            output_int=$(python -c "print(int('$output'))" 2>/dev/null)
+          if [[ "$output" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then  # Ensure output is a number
+            output_int=$(python -c "print(int(float('$output')))")
             echo "Converted Output: $output_int"
-            if (( $(echo "$output_int > 50" | bc -l) )); then
+            if (( output_int > 50 )); then
               echo "Test passed: Output ($output_int) is greater than 50"
             else
               echo "Test failed: Output ($output_int) is not greater than 50"
