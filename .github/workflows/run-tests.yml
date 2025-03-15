@@ -69,7 +69,7 @@ jobs:
       - name: Run test and capture output
         id: run_test
         run: |
-          output=$(python src/confidence_score_test.py test/cv.txt "test/Job Description1.txt" test/cover_letter.txt || echo "⚠️ Python script failed")
+          output=$(python src/confidence_score_test.py test/cv.txt "test/Job_Description1.txt" test/cover_letter.txt || echo "⚠️ Python script failed")
           echo "Raw Output: $output"
           echo "output=$output" >> $GITHUB_ENV
 
