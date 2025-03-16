@@ -1,0 +1,33 @@
+#!/bin/bash
+echo "Running pre-push tests..."
+
+# Ensure correct Python version
+PYTHON_VERSION=$(python --version 2>&1)
+REQUIRED_VERSION="Python 3.12.6"
+
+if [[ "$PYTHON_VERSION" != "$REQUIRED_VERSION" ]]; then
+    echo "Required Python version is $REQUIRED_VERSION, but found $PYTHON_VERSION."
+    exit 1
+fi
+echo "Python version check passed: $PYTHON_VERSION"
+# Install dependencies
+pip install -r requirements.txt
+
+# Run test script and capture output
+OUTPUT=$(python src/confidence_score_test.py test/cv.txt test/Job_Description1.txt test/cover_letter.txt)
+echo "Test Output: $OUTPUT"
+
+# Ensure output is a valid number
+if ! [[ "$OUTPUT" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+    echo "Pre-push check failed: Output is not a valid number ($OUTPUT)."
+    exit 1
+fi
+
+# Convert output to integer and check if greater than 50
+OUTPUT_INT=$(python -c "print(int(float('$OUTPUT')))")
+if (( OUTPUT_INT > 50 )); then
+    echo "Pre-push check passed: output ($OUTPUT_INT) is greater than 50."
+else
+    echo "Pre-push check failed: output ($OUTPUT_INT) is not greater than 50."
+    exit 1
+fi
