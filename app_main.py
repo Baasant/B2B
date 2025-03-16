@@ -6,7 +6,7 @@ from src.user_feedback import user_feedback_fun
 # from user_feedback import *
 from langchain_community.llms import Ollama
 import os
-
+######checl##
 # Initialize LLM
 # llm4generator_extractor = Ollama(model="llama2", temperature=0.7,base_url="http://host.docker.internal:11434")
 
